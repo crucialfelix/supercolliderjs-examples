@@ -1,0 +1,4 @@
+# If the install script notified you that it could not find sclang or scsynth
+# then uncomment these and set the paths:
+# sclang: /Applications/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+# scsynth: /Applications/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
