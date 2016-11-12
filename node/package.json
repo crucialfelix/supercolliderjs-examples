@@ -1,0 +1,36 @@
+{
+  "name": "supercolliderjs-examples",
+  "version": "0.13.0",
+  "description": "Usage examples for supercollider.js",
+  "author": "Chris Sattinger <crucialfelix@gmail.com>",
+  "contributors": [
+    {
+      "name": "Chris Sattinger",
+      "email": "crucialfelix@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "supercollider",
+    "supercolliderjs",
+    "synthesis",
+    "music",
+    "sound"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/crucialfelix/supercolliderjs-examples"
+  },
+  "dependencies": {
+    "baconjs": "^0.7.88",
+    "lodash": "^4.16.6",
+    "supercolliderjs": "^0.13.0"
+  },
+  "scripts": {
+    "postinstall": "npm run check-install",
+    "check-install": "node ./check-install.js"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
