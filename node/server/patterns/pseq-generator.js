@@ -4,9 +4,9 @@
  * A generator in js is very similar to a Routine in sc
  *
  * This is the simplest example of a generator.
- * 
+ *
  * It is designated with `*FuncName() {}`
- * 
+ *
  */
 
 // GeneratorFunction
@@ -14,7 +14,7 @@ function *Pseq(list, repeats=1) {
   for (let i = 0; i < repeats; i++) {
     for (let value of list) {
       yield value;
-    }    
+    }
   }
 }
 

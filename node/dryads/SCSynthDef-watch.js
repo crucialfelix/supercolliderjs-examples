@@ -9,7 +9,7 @@
  * Event streams have a well known interface and can be derived
  * from DOM (browser UI) events, MIDI, generative etc.
  *
- * In this examlpe it uses a simple Bacon.js random generator.
+ * In this example it uses a simple Bacon.js random generator.
  *
  * Warning: this example will soon be out of date.
  * There will be a different way to connect streams into Dryads

@@ -4,10 +4,11 @@ This examples should be used with at least Node 6
 
 They are written in ES2015 and use new forms like:
 
-`let`
-Promise
-Generators
-
+- `let`
+- Promise
+- Generators
+- Arrow functions
+- Destructuring
 
 ```sh
 git clone
