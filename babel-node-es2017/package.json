@@ -30,7 +30,7 @@
   },
   "scripts": {
     "postinstall": "npm run check-install",
-    "check-install": "node ./_utils/check-install.js",
+    "check-install": "node -e \"require('supercolliderjs').checkInstall()\"",
     "compile": "babel -d lib/ src/"
   },
   "engines": {
