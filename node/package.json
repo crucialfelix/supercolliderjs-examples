@@ -24,7 +24,7 @@
   "dependencies": {
     "baconjs": "^0.7.88",
     "lodash": "^4.16.6",
-    "supercolliderjs": "^0.13.0"
+    "supercolliderjs": "^0.14.0"
   },
   "scripts": {
     "postinstall": "npm run check-install",
