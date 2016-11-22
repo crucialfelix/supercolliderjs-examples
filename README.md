@@ -5,42 +5,54 @@ This examples should be used with at least Node 6
 They are written in ES2015 and use new forms like:
 
 - `let`
-- Promise
+- `Promise`
 - Generators
 - Arrow functions
 - Destructuring
 
+They use `require` rather than `import` which is not part of ES2015.
+
+So no [Babel](https://babeljs.io/) transpiling is required to run these.
+
+## INSTALL
+
 ```sh
-git clone
+git clone https://github.com/crucialfelix/supercolliderjs-examples.git
 cd supercolliderjs-examples
 ```
 
-Each top level folder is an example application and has it's own `package.json`
+Each top level folder is an example application and has it's own `package.json` and it's own README.md to read.
+
+For each one you should cd inside it and install it:
 
 ```sh
 cd node
 npm install
 ```
 
-## node
+## APPS
 
-Examples of running code on the commandline.
+### node
 
-## webserver
+Examples of running code on the commandline. Most of the core functionality is documented here.
 
-Building an application that starts a webserver that browsers can connect to. It uses websockets to communicate between browser and server.
+### webserver & websockets
+
+Starts a webserver that browsers can connect to. It uses websockets to communicate between browser and server.
 
 supercollider.js runs in the webserver process. You can only hear the audio if you are in the same room as the webserver machine.
 
-## Electron
+The next step will be to allow multiple server machines to connect to a public hub website. These server machines would be running scsynth and hooked up to speakers.
+
+### Electron
 
 Applications that have server and client and can be released as a downloadable self-contained app.  This can contain scsynth and supercollider.js
 
 [in progress]
 
-See: https://github.com/experimentalDataAesthetics/play-splom
+For a full electron app with supercollider.js see: https://github.com/experimentalDataAesthetics/play-splom
 
-## React Native
+### React Native
 
 [in progress]
 

@@ -28,16 +28,6 @@ sc.server.boot().then((server) => {
     }
   });
 
-  // let def = server.loadSynthDef('formant', './formant.scd');
-  // let efx = server.loadSynthDef('verb', './verb.scd');
-  // let mixToMaster = server.synthDef('mixToMaster',
-  //   `
-  //     SynthDef('mixToMaster', { arg in=0;
-  //       Out.ar(0, In.ar(in, 2));
-  //     });
-  //   `
-  // );
-
   // Create an AudioBus with 2 channels
   let bus = server.audioBus(2);
   let spawnGroup = server.group();
