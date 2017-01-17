@@ -11,7 +11,7 @@ let sc = require('supercolliderjs');
 sc.server.boot().then((server) => {
 
   // Compile synthDef from a file
-  let { formant, efx, mixToMaster } = server.compileSynthDefs({
+  let { formant, verb, mixToMaster } = server.synthDefs({
     formant: {
       path: './formant.scd'
     },
@@ -46,13 +46,13 @@ sc.server.boot().then((server) => {
   // The reverb synth takes audio from bus, reverberates it
   // and writes it back to the same bus.
   // See ./verb.scd
-  let efxSynth = server.synth(efx, {out: bus.id}, efxGroup);
+  let efxSynth = server.synth(verb, {out: bus.id}, efxGroup);
   // This mixes the effects bus back to the master audio out: 0
   let mixToMasterSynth = server.synth(mixToMaster, {in: bus.id}, masterGroup);
 
   // This is a function that spawns the Synths
   let spawn = (dur) => {
-    server.synth(def, {
+    server.synth(formant, {
       out: bus.id,  // play onto the bus
       fundfreq: randFreq(),
       formantfreq: randFreq(),

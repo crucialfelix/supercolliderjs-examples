@@ -2,60 +2,61 @@
  * Port of Patterns example
  * http://doc.sccode.org/Tutorials/Streams-Patterns-Events3.html
  *
- * This is using Pseq and Prand in ./pattern-classes
+ * This is using the Pseq and Prand classes defined in ./pattern-classes.js
  *
- * You still have to use `new Pseq`
+ * You still have to use `new Pseq([...])`
+
  * This could be made even clearer and tighter using and ES7 decorator
  * and avoid having to construct a class that only really has one function.
  */
 let _ = require('lodash');
+let sc = require('supercolliderjs');
 let { msg, map } = require('supercolliderjs');
-let { withDefs } = require('../utils');
 let { Pseq, Prand } = require('./pattern-classes');
 
-let sound = 'help_SPE3_Allpass6';
-let defs = {
-  help_SPE3_Allpass6: {
-    path: './help_SPE3_Allpass6.scd'
-  }
+let def = {
+  name: 'help_SPE3_Allpass6',
+  path: './help_SPE3_Allpass6.scd'
 };
 
-withDefs(defs, (server) => {
+sc.server.boot().then(server => {
+  server.loadSynthDef(def.name, def.path).then(() => {
 
-  let notePattern =
-    new Pseq([
-      new Prand([
-        null,    // a null item reached in a pattern causes it to end
-        new Pseq([24, 31, 36, 43, 48, 55])
-      ]),
+    let notePattern =
       new Pseq([
-        60,
-        new Prand([63, 65]),
-        67,
-        new Prand([70, 72, 74])
-      ], () => _.random(2, 5)),
-      new Prand([74, 75, 77, 79, 81], () => _.random(3, 9))
-    ], Infinity);
+        new Prand([
+          null,    // a null item reached in a pattern causes it to end
+          new Pseq([24, 31, 36, 43, 48, 55])
+        ]),
+        new Pseq([
+          60,
+          new Prand([63, 65]),
+          67,
+          new Prand([70, 72, 74])
+        ], () => _.random(2, 5)),
+        new Prand([74, 75, 77, 79, 81], () => _.random(3, 9))
+      ], Infinity);
 
-  const interval = 130;
+    const interval = 130;
 
-  let noteStream = notePattern.asStream();
+    let noteStream = notePattern.asStream();
 
-  function step() {
-    let freq = noteStream.next();
-    if (!freq.done) {
-      server.send.msg(
-        msg.synthNew(sound, -1, msg.AddActions.TAIL, 0, {
-          freq: map.midiToFreq(freq.value)
-        })
-      );
-      setTimeout(step, interval);
+    function step() {
+      let freq = noteStream.next();
+      if (!freq.done) {
+        server.send.msg(
+          msg.synthNew(def.name, -1, msg.AddActions.TAIL, 0, {
+            freq: map.midiToFreq(freq.value)
+          })
+        );
+        setTimeout(step, interval);
+      }
     }
-  }
 
-  step();
-
+    step();
+  });
 });
+
 
 
 

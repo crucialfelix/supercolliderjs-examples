@@ -1,24 +1,19 @@
 
-
 /**
- * this shows how to capture output of sclang
- * and do anything you like with it.
+ * This demonstrates how to write to the input of sclang
+ * and to capture the output with a handler.
  *
- * But default sclang.js echoes everything to the console.
- *
+ * This is raw, low-level stuff. Normally you would  use higher level APIs.
  */
 
 var sc = require('supercolliderjs');
-var SCLang = sc.lang;
 
-sc.resolveOptions(null, {
+sc.lang.boot({
   // no STDIN, all input will be programmatic
   stdin: false,
-  // do not echo to console, that's handled here
+  // By default sclang.js echoes to the console that is sent to it (sclang.write)
   echo: false
-}).then(function(options) {
-
-  var sclang = new SCLang(options);
+}).then((sclang) => {
 
   // sclang will emit the 'stdout' event
   sclang.on('stdout', function(d) {
@@ -36,5 +31,4 @@ sc.resolveOptions(null, {
       console.log('writing to STDIN: "1 + 1"');
       sclang.write('1 + 1');
     });
-
 });

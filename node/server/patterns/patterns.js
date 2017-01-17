@@ -8,16 +8,16 @@
 // compile synth def and send it
 // create a Synth and send freq and env changes to it
 // with a simple timeout loop to pull from it
-// 
+//
 // pseq
 // prand
-// 
+//
 
 function *Pseq(list, repeats=1, offset=0) {
   for (let i = 0; i < repeats; i++) {
     for (let value of list) {
       yield value;
-    }    
+    }
   }
 }
 

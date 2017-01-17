@@ -10,12 +10,12 @@ let app = dryadic();
 
 let s = new SCServer({}, [
   new SCLang({debug: true}, [
-    new Synth(
-      new SCSynthDef({compileFrom: './synthdefs/lfsaw.scd'}),
-      {
+    new Synth({
+      def: new SCSynthDef({compileFrom: './synthdefs/lfsaw.scd'}),
+      args: {
         freq: 600
       }
-    )
+    })
   ])
 ]);
 
