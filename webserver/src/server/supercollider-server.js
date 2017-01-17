@@ -74,7 +74,7 @@ function connect(socket) {
 function disconnect(socket) {
   let user = context.users[socket.id];
   if (user) {
-    releaseSynth(user.synth);
+    releaseSynth(user);
     // remove user
     delete context.users[socket.id];
     console.log(`Removing user ${socket.id}`);
@@ -105,7 +105,7 @@ function noteOff(socket, data) {
   console.log('noteOff', data);
   let user = context.users[socket.id];
   if (user) {
-    releaseSynth(user.synth);
+    releaseSynth(user);
   }
 }
 
@@ -123,8 +123,8 @@ function noteSlide(socket, data) {
   }
 }
 
-function releaseSynth(synth) {
-  if (synth) {
+function releaseSynth(user) {
+  if (user.synth) {
     // What was stored is a `Promise` for a `Synth`,
     // so use `.then` to get the resolved actual `Synth`.
 
@@ -135,7 +135,8 @@ function releaseSynth(synth) {
     // (envelope generator). Then the `Synth` will free itself
     // because its `doneAction` is 2 — free the `Synth` when `EnvGen`
     // is done.
-    synth.then(syn => syn.set({gate: 0}));
+    user.synth.then(syn => syn.set({gate: 0}));
+    delete user.synth;
   }
 }
 
