@@ -10,7 +10,7 @@ Each of these can be run on the commandline.
 
 ```sh
 cd server/server-plus
-node synthdefs.js
+node synthdef.js
 ```
 
 To stop it type `ctrl-c`
